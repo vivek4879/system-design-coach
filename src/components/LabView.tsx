@@ -99,7 +99,7 @@ export function LabView({
             ref={iframeRef}
             className="lab-iframe"
             srcDoc={labHtml}
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts"
             title={`Lab: ${concept.title}`}
             style={{ height: `${iframeHeight}px` }}
           />
