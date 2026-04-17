@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Session } from "../types";
+import type { Session, Settings } from "../types";
 
 const PLACEHOLDER = `Paste system design content here...
 
@@ -15,7 +15,9 @@ interface InputScreenProps {
   onResumeSession: (sessionId: string) => void;
   onDeleteSession: (sessionId: string) => void;
   onOpenDashboard: () => void;
+  onOpenSettings: () => void;
   isLoading: boolean;
+  settings: Settings;
 }
 
 export function InputScreen({
@@ -25,7 +27,9 @@ export function InputScreen({
   onResumeSession,
   onDeleteSession,
   onOpenDashboard,
+  onOpenSettings,
   isLoading,
+  settings,
 }: InputScreenProps) {
   const [text, setText] = useState("");
 
@@ -60,6 +64,15 @@ export function InputScreen({
 
   return (
     <div className="input-screen">
+      <div className="input-top-bar">
+        <span className="nav-model-label">
+          {settings.model} | {settings.effort}
+        </span>
+        <button className="btn btn-ghost btn-sm" onClick={onOpenSettings}>
+          Settings
+        </button>
+      </div>
+
       <div className="input-hero">
         <h1>System Design Micro-Lab</h1>
         <p className="subtitle">

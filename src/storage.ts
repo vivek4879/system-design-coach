@@ -7,6 +7,8 @@ const DEFAULT_DATA: AppData = {
   settings: {
     learningStyle: "code-first",
     dailyGoal: 3,
+    model: "sonnet",
+    effort: "high",
   },
   stats: {
     totalMastered: 0,
@@ -20,7 +22,9 @@ export function loadData(): AppData {
   if (!raw) return structuredClone(DEFAULT_DATA);
 
   try {
-    return JSON.parse(raw) as AppData;
+    const parsed = JSON.parse(raw) as AppData;
+    parsed.settings = { ...DEFAULT_DATA.settings, ...parsed.settings };
+    return parsed;
   } catch {
     return structuredClone(DEFAULT_DATA);
   }

@@ -23,6 +23,8 @@ export interface Session {
 export interface Settings {
   learningStyle: "code-first" | "theory-first";
   dailyGoal: number;
+  model: "sonnet" | "opus" | "haiku";
+  effort: "low" | "medium" | "high" | "max";
 }
 
 export interface Stats {
@@ -46,4 +48,25 @@ export type Screen =
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
+}
+
+export interface ClaudeUsage {
+  inputTokens: number;
+  outputTokens: number;
+  cacheReadTokens: number;
+  cacheCreationTokens: number;
+  costUsd: number;
+  durationMs: number;
+}
+
+export interface ClaudeResponse {
+  text: string;
+  usage: ClaudeUsage;
+}
+
+export interface SessionUsageTotals {
+  totalCostUsd: number;
+  totalInputTokens: number;
+  totalOutputTokens: number;
+  requestCount: number;
 }
